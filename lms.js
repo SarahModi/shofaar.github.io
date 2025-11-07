@@ -1,7 +1,7 @@
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
-const SUPABASE_URL = "https://your-project.supabase.co"; // replace
-const SUPABASE_ANON_KEY = "your-anon-key"; // replace
+const SUPABASE_URL = "https://sfeaqafqgkgugcdwavdo.supabase.co";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNmZWFxYWZxZ2tndWdjZHdhdmRvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjI1MDg3MDQsImV4cCI6MjA3ODA4NDcwNH0.5BdEck-RFrePdJLH6s1ocstZ-MAT6EjEjhXcB766GsE";
 const db = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 async function loadCourses() {
@@ -12,9 +12,9 @@ async function loadCourses() {
     return;
   }
 
-  console.log("Courses:", courses); // you’ll see them in your browser console
+  console.log("Courses:", courses);
 
-  const container = document.getElementById("courses");
+  const container = document.getElementById("courses-list");
   if (container) {
     container.innerHTML = courses
       .map(
@@ -22,7 +22,7 @@ async function loadCourses() {
         <div class="course-card">
           <h3>${course.title}</h3>
           <p>${course.description}</p>
-          <small>${course.level}</small>
+          <button class="btn btn-outline">Enroll</button>
         </div>`
       )
       .join("");
