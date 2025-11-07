@@ -1,14 +1,9 @@
-// Tell browser this is a module when you import it in HTML
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
-// 🔑 Your actual Supabase project details
-const SUPABASE_URL = "https://your-project.supabase.co"; // <-- replace with your URL
-const SUPABASE_ANON_KEY = "your-anon-key"; // <-- replace with your anon key
-
-// ✅ Initialize Supabase
+const SUPABASE_URL = "https://your-project.supabase.co"; // replace
+const SUPABASE_ANON_KEY = "your-anon-key"; // replace
 const db = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-// 🎓 Fetch and show courses
 async function loadCourses() {
   const { data: courses, error } = await db.from("courses").select("*");
 
@@ -17,9 +12,8 @@ async function loadCourses() {
     return;
   }
 
-  console.log("Courses:", courses);
+  console.log("Courses:", courses); // you’ll see them in your browser console
 
-  // If you want to show them on your page
   const container = document.getElementById("courses");
   if (container) {
     container.innerHTML = courses
@@ -28,11 +22,11 @@ async function loadCourses() {
         <div class="course-card">
           <h3>${course.title}</h3>
           <p>${course.description}</p>
+          <small>${course.level}</small>
         </div>`
       )
       .join("");
   }
 }
 
-// Run it
 loadCourses();
